@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#160f14">
+  <meta name="description" content="AUREN, tu asistente personal para el móvil.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <title>AUREN · Asistente personal</title>
+  <style>
+    :root{color-scheme:dark;--bg:#100c10;--panel:#1b131a;--panel2:#241820;--wine:#76243f;--gold:#d8b96c;--text:#f5eef1;--muted:#b6a8b0;--line:#44303a;--green:#74c69d;--red:#ef9aa5}
+    *{box-sizing:border-box} body{margin:0;background:radial-gradient(ellipse at 50% -15%,#442033 0,transparent 46%),var(--bg);color:var(--text);font:16px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100svh;padding:env(safe-area-inset-top) 14px calc(18px + env(safe-area-inset-bottom));}
+    .app{width:min(100%,620px);margin:0 auto}.top{display:flex;align-items:center;gap:13px;padding:20px 4px 15px}.logo{width:58px;height:58px;flex:none}.brand{font-weight:850;letter-spacing:.16em;font-size:1.2rem}.sub{font-size:.78rem;color:var(--muted);margin-top:2px}.state{margin-left:auto;border:1px solid var(--line);border-radius:99px;padding:5px 9px;font-size:.72rem;color:var(--muted);white-space:nowrap}.hero{text-align:center;padding:14px 12px 18px}.orb{width:118px;height:118px;margin:3px auto 12px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#6e2943 0,#321724 56%,#1b1017 70%);border:1px solid #8e435d;box-shadow:0 0 35px #78284344,inset 0 0 30px #d8b96c18}.orb svg{width:80px;height:80px}.hero h1{font-size:1.45rem;margin:8px 0 2px}.hero p{margin:0;color:var(--muted);font-size:.91rem}.panel{background:#1b131aee;border:1px solid var(--line);border-radius:19px;padding:16px;margin:12px 0;box-shadow:0 10px 30px #0002}.label{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);font-weight:750;margin:0 0 10px}.log{display:flex;flex-direction:column;gap:10px;max-height:34svh;overflow:auto;scroll-behavior:smooth}.bubble{padding:10px 12px;border-radius:13px;max-width:92%;white-space:pre-wrap;overflow-wrap:anywhere}.bubble.auren{align-self:flex-start;background:var(--panel2);border:1px solid #46313c}.bubble.you{align-self:flex-end;background:#542139;border:1px solid #7a3755}.bubble small{display:block;color:var(--muted);font-size:.68rem;margin-bottom:3px}.inputrow{display:flex;gap:8px}.inputrow input{min-width:0;flex:1;border-radius:13px;border:1px solid #5b3a49;background:#110d11;color:var(--text);padding:13px;font:inherit;outline:none}.inputrow input:focus{border-color:var(--gold)}button{font:inherit;cursor:pointer;border:1px solid #7a4a5d;background:#39202c;color:var(--text);border-radius:13px;padding:11px 13px}button:active{transform:scale(.98)}button.primary{background:linear-gradient(130deg,#7b2848,#4b1b30);border-color:#a35a74}button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}.send{font-weight:800;color:var(--gold)}.voice{display:flex;align-items:center;gap:12px}.mic{width:58px;height:58px;flex:none;border-radius:50%;background:#512038;border:1px solid #9a4d69;color:#ffe8b0;display:grid;place-items:center}.mic svg{width:24px;height:24px}.mic.listening{animation:pulse 1.1s infinite;border-color:var(--gold);box-shadow:0 0 0 5px #d8b96c1f}.voicecopy{flex:1}.voicecopy strong{display:block}.voicecopy span{font-size:.82rem;color:var(--muted)}.shortcuts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.shortcuts button{text-align:left;min-height:54px}.shortcut-ico{margin-right:8px}.foot{text-align:center;color:#93818b;font-size:.74rem;padding:8px 10px 2px}.foot a{color:var(--gold)}.notice{font-size:.8rem;color:var(--muted);margin-top:9px}.settings{display:flex;gap:8px;flex-wrap:wrap}.settings button{font-size:.84rem}.online{color:var(--green)}.off{color:var(--red)}
+    @keyframes pulse{50%{box-shadow:0 0 0 10px #d8b96c14}}
+    @media(min-width:520px){body{padding-top:20px}.hero{padding-top:20px}.orb{width:135px;height:135px}}
+  </style>
+</head>
+<body>
+<main class="app">
+  <header class="top">
+    <svg class="logo" viewBox="0 0 100 100" role="img" aria-label="Símbolo de AUREN"><circle cx="50" cy="50" r="43" fill="#28131e" stroke="#8a3a56" stroke-width="3"/><circle cx="50" cy="50" r="32" fill="none" stroke="#d8b96c" stroke-width="1.7"/><path d="M50 20 66 50 50 80 34 50Z" fill="#76243f" stroke="#e5c979" stroke-width="2"/><circle cx="50" cy="50" r="7" fill="#fff0bd"/></svg>
+    <div><div class="brand">AUREN</div><div class="sub">ASISTENTE PERSONAL · MOBILE</div></div>
+    <div class="state" id="status">Preparado</div>
+  </header>
+  <section class="hero">
+    <div class="orb" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="none" stroke="#d8b96c" stroke-width="2"/><circle cx="50" cy="50" r="26" fill="none" stroke="#a95a76" stroke-width="2"/><path d="M50 20 67 50 50 80 33 50Z" fill="#76243f" stroke="#e6ca7d" stroke-width="2"/><circle cx="50" cy="50" r="6" fill="#fff0bd"/></svg></div>
+    <h1>Estoy a tu disposición.</h1><p>Tu móvil. Tus reglas. Empezamos, Kaze.</p>
+  </section>
+  <section class="panel" aria-label="Conversación">
+    <div class="label">Conversación</div>
+    <div class="log" id="log" aria-live="polite"><div class="bubble auren"><small>AUREN</small>Hola, Kaze. Soy AUREN. Escribe un mensaje o pulsa el micrófono. Prueba «¿qué hora es?» o «abre YouTube».</div></div>
+  </section>
+  <section class="panel">
+    <div class="label">Hablar con AUREN</div>
+    <div class="inputrow"><input id="message" type="text" maxlength="500" placeholder="Escribe un comando…" autocomplete="off" aria-label="Mensaje para AUREN"><button class="send primary" id="send" aria-label="Enviar mensaje">➤</button></div>
+    <div class="voice" style="margin-top:13px">
+      <button class="mic" id="mic" aria-label="Activar reconocimiento de voz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8"/></svg></button>
+      <div class="voicecopy"><strong id="voiceTitle">Pulsa para hablar</strong><span id="voiceText">El permiso de micrófono depende de tu navegador.</span></div>
+    </div>
+    <div class="notice">La voz funciona solo en navegadores compatibles y normalmente requiere que publiques esta app con HTTPS. El reconocimiento puede usar servicios del navegador.</div>
+  </section>
+  <section class="panel">
+    <div class="label">Accesos rápidos</div>
+    <div class="shortcuts">
+      <button data-cmd="abre Google"><span class="shortcut-ico">⌕</span>Buscar en Google</button>
+      <button data-cmd="abre YouTube"><span class="shortcut-ico">▶</span>YouTube</button>
+      <button data-cmd="abre WhatsApp"><span class="shortcut-ico">◉</span>WhatsApp</button>
+      <button data-cmd="qué hora es"><span class="shortcut-ico">◷</span>Hora actual</button>
+      <button data-cmd="qué fecha es"><span class="shortcut-ico">▦</span>Fecha de hoy</button>
+      <button data-cmd="ayuda"><span class="shortcut-ico">✧</span>Ver comandos</button>
+    </div>
+  </section>
+  <section class="panel">
+    <div class="label">Preferencias</div><div class="settings"><button id="toggleSpeech">🔊 Silenciar respuestas</button><button id="install" hidden>＋ Instalar AUREN</button><button id="clear">Borrar conversación</button></div>
+    <div class="notice">AUREN es un prototipo: no tiene todavía un modelo de IA conectado ni acceso ilimitado al teléfono.</div>
+  </section>
+  <footer class="foot">AUREN MOBILE v0.1 · Negro, vino y oro · <span id="connection">Comprobando conexión…</span></footer>
+</main>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const log = $('log'), status = $('status'), input = $('message'), mic = $('mic');
+  let speakEnabled = true, recognition = null, listening = false, deferredInstall = null;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  function addBubble(who, text) {
+    const node = document.createElement('div'); node.className = `bubble ${who === 'Tú' ? 'you' : 'auren'}`;
+    const small = document.createElement('small'); small.textContent = who;
+    const content = document.createElement('div'); content.textContent = text;
+    node.append(small, content); log.appendChild(node); log.scrollTop = log.scrollHeight;
+  }
+  function say(text) { if (!speakEnabled || !('speechSynthesis' in window)) return; window.speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang = 'es-ES'; u.rate = 1; window.speechSynthesis.speak(u); }
+  function reply(text, speak = true) { addBubble('AUREN', text); status.textContent = 'Preparado'; if (speak) say(text); }
+  function openUrl(url) { window.open(url, '_blank', 'noopener,noreferrer'); }
+  function handle(raw) {
+    const q = raw.trim(); if (!q) return; addBubble('Tú', q); input.value = '';
+    const s = q.toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    if (/\b(hola|buenas|hey)\b/.test(s)) return reply('¡A tu servicio, Kaze! ¿Qué necesitas?');
+    if (s.includes('ayuda') || s.includes('que puedes hacer') || s.includes('comandos')) return reply('Puedo decirte la hora y la fecha, abrir Google, YouTube o WhatsApp, y buscar en Internet. Prueba: «busca ideas para mi setup» o «abre YouTube». Todavía no controlo ajustes internos ni todas las aplicaciones del móvil.');
+    if (s.includes('hora')) { const t = new Intl.DateTimeFormat('es-ES',{hour:'2-digit',minute:'2-digit'}).format(new Date()); return reply(`Son las ${t}.`); }
+    if (s.includes('fecha') || s.includes('dia es hoy') || s.includes('día es hoy')) { const d = new Intl.DateTimeFormat('es-ES',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date()); return reply(`Hoy es ${d}.`); }
+    if (s.includes('abre google') || s.includes('abrir google')) { reply('Abriendo Google.'); return openUrl('https://www.google.com/'); }
+    if (s.includes('abre youtube') || s.includes('abrir youtube')) { reply('Abriendo YouTube.'); return openUrl('https://www.youtube.com/'); }
+    if (s.includes('abre whatsapp') || s.includes('abrir whatsapp')) { reply('Abriendo WhatsApp Web. En el móvil también puedes volver a la app de WhatsApp si el sistema ofrece esa opción.'); return openUrl('https://wa.me/'); }
+    if (s.startsWith('busca ') || s.startsWith('buscar ') || s.startsWith('investiga ')) { const term = q.replace(/^(busca|buscar|investiga)\s+/i,'').trim(); if (!term) return reply('Dime qué quieres buscar.'); reply(`Buscando «${term}» en Google.`); return openUrl('https://www.google.com/search?q=' + encodeURIComponent(term)); }
+    if (s.includes('gracias')) return reply('Para eso estoy, Kaze.');
+    if (s.includes('quien eres') || s.includes('quién eres')) return reply('Soy AUREN, tu asistente personal en desarrollo. Esta versión usa comandos básicos; todavía no soy una IA conversacional completa.');
+    if (s.includes('silencio') || s.includes('no hables')) { speakEnabled = false; $('toggleSpeech').textContent = '🔈 Activar respuestas habladas'; return reply('Entendido. A partir de ahora responderé por texto.', false); }
+    return reply('Todavía no tengo una respuesta inteligente para eso. Puedes decir «ayuda» para ver mis comandos, o empezar con «busca» seguido de lo que necesitas.');
+  }
+  $('send').addEventListener('click', () => handle(input.value));
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') handle(input.value); });
+  document.querySelectorAll('[data-cmd]').forEach(b => b.addEventListener('click', () => handle(b.dataset.cmd)));
+  $('toggleSpeech').addEventListener('click', () => { speakEnabled = !speakEnabled; if (!speakEnabled && 'speechSynthesis' in window) window.speechSynthesis.cancel(); $('toggleSpeech').textContent = speakEnabled ? '🔊 Silenciar respuestas' : '🔈 Activar respuestas habladas'; reply(speakEnabled ? 'Respuestas habladas activadas.' : 'Respuestas habladas desactivadas.', false); });
+  $('clear').addEventListener('click', () => { log.replaceChildren(); addBubble('AUREN', 'Conversación borrada. ¿En qué te ayudo?'); });
+  function stopListening() { listening = false; mic.classList.remove('listening'); $('voiceTitle').textContent = 'Pulsa para hablar'; status.textContent = 'Preparado'; }
+  mic.addEventListener('click', () => {
+    if (!SpeechRecognition) { reply('Este navegador no ofrece reconocimiento de voz compatible. Prueba Chrome en Android o usa el teclado por ahora.'); return; }
+    if (listening && recognition) { recognition.stop(); stopListening(); return; }
+    try {
+      recognition = new SpeechRecognition(); recognition.lang = 'es-ES'; recognition.interimResults = false; recognition.maxAlternatives = 1; recognition.continuous = false;
+      recognition.onstart = () => { listening = true; mic.classList.add('listening'); $('voiceTitle').textContent = 'Te escucho…'; $('voiceText').textContent = 'Habla ahora. Pulsa el botón para detener.'; status.textContent = 'Escuchando'; };
+      recognition.onresult = e => { const said = e.results[0][0].transcript; stopListening(); handle(said); };
+      recognition.onerror = e => { stopListening(); reply(e.error === 'not-allowed' ? 'No tengo permiso para usar el micrófono. Actívalo en los permisos del navegador.' : 'No he podido reconocer la voz. Puedes intentarlo de nuevo o escribir tu mensaje.', false); };
+      recognition.onend = stopListening; recognition.start();
+    } catch (_) { stopListening(); reply('No se pudo iniciar el micrófono. Comprueba los permisos y que la web use HTTPS.', false); }
+  });
+  if (!SpeechRecognition) { $('voiceText').textContent = 'Tu navegador puede no admitir reconocimiento por voz.'; }
+  window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredInstall = e; $('install').hidden = false; });
+  $('install').addEventListener('click', async () => { if (!deferredInstall) return; deferredInstall.prompt(); await deferredInstall.userChoice; deferredInstall = null; $('install').hidden = true; });
+  window.addEventListener('appinstalled', () => { $('install').hidden = true; reply('AUREN se ha instalado en tu dispositivo.', false); });
+  if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('./sw.js').catch(() => {});
+  $('connection').textContent = navigator.onLine ? 'Con conexión' : 'Sin conexión'; $('connection').className = navigator.onLine ? 'online' : 'off';
+  window.addEventListener('online', () => { $('connection').textContent = 'Con conexión'; $('connection').className = 'online'; });
+  window.addEventListener('offline', () => { $('connection').textContent = 'Sin conexión'; $('connection').className = 'off'; });
+})();
+</script>
+</body>
+</html>
